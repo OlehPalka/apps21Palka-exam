@@ -11,7 +11,6 @@ import java.util.Arrays;
 public class Student extends BasicStudent {
     private ArrayList<Tuple<String, Integer>> exams;
 
-    @SafeVarargs
     public Student(String name, String surname, Integer year, Tuple<String, Integer>... exams) {
         super(name, surname, year);
         this.exams = new ArrayList(Arrays.asList(exams));
@@ -28,7 +27,10 @@ public class Student extends BasicStudent {
             JsonObject CurObj = new JsonObject();
             CurObj.add(new JsonPair("course", new JsonString(exam.key)));
             CurObj.add(new JsonPair("mark", new JsonNumber(exam.value)));
-            boolean passed = exam.value > 2;
+            boolean passed = false;
+            if (exam.value > 2) {
+                passed = true;
+            }
             CurObj.add(new JsonPair("passed", new JsonBoolean(passed)));
             ExamsToInsert[i] = CurObj;
         }

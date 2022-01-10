@@ -6,10 +6,12 @@ import java.util.Map;
  * Created by Andrii_Rodionov on 1/3/2017.
  */
 public class JsonObject extends Json {
-    private Map<String, Json> values = new HashMap<>();
+    private Map<String, Json> values = new HashMap<String, Json>();
 
     public JsonObject(JsonPair... jsonPairs) {
-        for (JsonPair pair: jsonPairs) values.put(pair.key, pair.value);
+        for (JsonPair pair: jsonPairs) {
+            values.put(pair.key, pair.value);
+        }
     }
 
     @Override
@@ -20,7 +22,7 @@ public class JsonObject extends Json {
             if (!MainPart.equals("")) {
                 MainPart.append(" ,");
             }
-            MainPart.append("'").append(Key).append("': ");
+            MainPart.append("'" + Key + "': ");
             MainPart.append(values.get(Key).toJson());
         }
         return "{" + MainPart + "}";
