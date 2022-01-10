@@ -19,7 +19,7 @@ public class JsonObject extends Json {
         StringBuilder MainPart = new StringBuilder();
 
         for (String Key: values.keySet()) {
-            if (!MainPart.equals("")) {
+            if (!MainPart.toString().equals("")) {
                 MainPart.append(" ,");
             }
             MainPart.append("'" + Key + "': ");
